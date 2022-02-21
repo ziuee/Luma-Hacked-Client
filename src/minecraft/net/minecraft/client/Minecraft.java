@@ -35,6 +35,8 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
 import javax.imageio.ImageIO;
+
+import dev.ziue.luma.Luma;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.audio.MusicTicker;
@@ -588,6 +590,8 @@ public class Minecraft implements IThreadListener, IPlayerUsage
             this.gameSettings.saveOptions();
         }
 
+        Luma.INSTANCE.onInitialize();
+
         this.renderGlobal.makeEntityOutlineShader();
     }
 
@@ -616,7 +620,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
     private void createDisplay() throws LWJGLException
     {
         Display.setResizable(true);
-        Display.setTitle("Minecraft 1.8.8");
+        Display.setTitle(Luma.INSTANCE.clientName + " | " + Luma.INSTANCE.clientVersion);
 
         try
         {
